@@ -1,0 +1,66 @@
+
+{% extends 'student/indexs.html' %}
+{% block content%}
+    <!-- End Navbar -->
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="card mt-4">
+            <div class="card-header p-3">
+              <h5 class="mb-0">How to take an exam
+              </h5>
+            </div>
+            <div class="card-body p-3 pb-0">
+              <div class="alert alert-primary alert-dismissible text-white" role="alert">
+                <span class="text-sm">
+                  <a href="javascript:;" class="alert-link text-white">Click on the exam tab (Click here to be redirected to the exam page)</a></span>
+                <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="alert alert-secondary alert-dismissible text-white" role="alert">
+                <span class="text-sm"> 
+                  <a href="{% url 'view_exams' %}" class="alert-link text-white">This would direct you to a page where you would find all available exams for current time</a></span>
+                <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="alert alert-success alert-dismissible text-white" role="alert">
+                <span class="text-sm">Please note that only today's exam would show to the available exams
+                  <a href="javascript:;" class="alert-link text-white"></a></span>
+                <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="alert alert-danger alert-dismissible text-white" role="alert">
+                <span class="text-sm">And you can check your results immediately you finish an exam
+                  <a href="{% url 'faculty-add_question_paper' %}" class="alert-link text-white"> </a></span>
+                <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="alert alert-warning alert-dismissible text-white" role="alert">
+                <span class="text-sm">To check your result 
+                  <a href="javascript:;" class="alert-link text-white"></a></span>
+                <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="alert alert-info alert-dismissible text-white" role="alert">
+                <span class="text-sm">Click on Result and previous exam tab under summary. <a href="{% url 'view_exams' %}" class="alert-link text-white"></a>.</span>
+                <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              
+            </div>
+          </div>
+    
+        </div>
+      </div>
+     
+      </div>
+     
+    </div>
+    {% endblock%}
+

@@ -1,0 +1,114 @@
+{% extends 'student/indexs.html' %}
+{% load static %}
+
+{% block css_block %}
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+{% endblock %}
+
+{% block content %}
+    <style>
+        img{
+        height:15em;
+        width:5em;
+      }
+    </style>
+    <div class="mt-5">
+    </div>
+    <div class="container">
+            <div class="row">
+                {% if exams %}
+                    {% for exam in exams %}
+                    <form id='form' class="card col-md-3 mt-3 ml-3 text-center" style="width: 18rem;" >
+                        <div >
+                            <img class="card-img-top" src="{% static 'img/book.png' %}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{exam.name}}</h5>
+                                <p class="card-text text-center">Professor {{exam.professor}}</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item text-center">Question Paper - {{exam.question_paper.qPaperTitle}}</li>
+                            </ul>
+                            <input name='room' type="hidden" value="{{exam.name}}" >
+                            <!-- <input name='examid' type="hidden" value="{{exam.id}}" > -->
+                            <input name='examid' type="hidden" value="{{exam.id}}" >
+                            <div class="card-body text-center">
+                                <input onclick="handleSubmit('{{exam.name}}','{{exam.id}}','{{matricno}}')" type="button" target="_blank" class="btn btn-outline-danger" value='Appear'>
+                            </div>
+                        </div>
+                    </form>
+                    {% endfor %}
+                {% else %}
+            <div class="jumbotron col-md-12 text-center bg-success" style="color: white;">
+                NO PENDING EXAMS
+            </div>
+        {% endif %}
+            </div>
+    </div>
+    
+
+
+{% endblock %}
+
+
+          {% block script %}
+<script>
+    
+    let form = document.getElementById('form')
+
+   async function handleSubmit(examname,examid,matricno){
+        
+        console.log(examid)
+        console.log(matricno)
+
+        let room = examname.toUpperCase()
+        let name = matricno
+        let exam = examid
+
+        let response = await fetch(`/exams/get_token/?channel=${room}`)
+        let data = await response.json()
+
+        let UID = data.uid
+        let token = data.token
+
+        sessionStorage.setItem('UID', UID)
+        sessionStorage.setItem('token', token)
+        sessionStorage.setItem('room', room)
+        sessionStorage.setItem('name', name)
+        console.log(token)
+
+        window.open("https://siloss.herokuapp.com/exams/student/appear/"+exam,"","width=800,height=800")
+    }
+
+
+
+
+    // form.addEventListener('submit', handleSubmit)
+
+    // form.addEventListener('submit', handleSubmit)
+
+    // form.addEventListener('submit', handleSubmit)
+    // let handleSubmit = async (e) => {
+    //     e.preventDefault()
+    //     let room = 'pop'
+    //     let name = 'science'
+
+    //     let response = await fetch(`/get_token/?channel=${room}`)
+    //     let data = await response.json()
+
+    //     let UID = data.uid
+    //     let token = data.token
+
+    //     sessionStorage.setItem('UID', UID)
+    //     sessionStorage.setItem('token', token)
+    //     sessionStorage.setItem('room', room)
+    //     sessionStorage.setItem('name', name)
+    //     console.log(token)
+
+    //     window.open("student/appear/{{exam.id}}","","width=800,height=800")
+    // }
+
+
+
+    
+</script>
+{% endblock %}

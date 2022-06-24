@@ -1,0 +1,108 @@
+{% extends "bases.html" %}
+  {% load static %}  
+{% block body %}
+
+        <!-- Appointment Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="bg-light rounded">
+                    <div class="row g-0">
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                            <div class="h-100 d-flex flex-column justify-content-center p-5">
+                                <h1 class="mb-4">Register Your Account</h1>
+                                <h6 class="mb-4">Please Note this is Register for faculty only</h6>
+                                <form  action="{% url 'faculty-register' %}" method="post">
+                                    {% csrf_token %}
+
+                                    {% if messages %}
+                                    <div class="messages">
+                                        {% for message in messages %}
+                                        <div {% if message.tags %} class="alert alert-sm alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    <div class="row g-3">
+                                        <div class="col-sm-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control border-0 usernamevalidOut" id='usernamefield'name="username"  maxlength="150" placeholder="username" required>
+                                                <label for="username">User Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="invalid-feedback " style="display: none;">
+                                            <p>
+                                            </p>
+                                          </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-floating">
+                                                <input type="email" name="email" id="emailfield" class="form-control" maxlength="254" required>
+                                                <label for="email">Email</label>
+                                            </div>
+                                        </div>
+                                        <div class="email-feedback invalid-feedback" style="display: none">
+                                            <p>
+                                            </p>
+                                          </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-floating">
+                                                <textarea name="address" cols="40" rows="10" class="form-control" maxlength="200" id="id_address" required>
+                                                </textarea>
+                                                <label for="id_address">Address</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                          <div class="form-floating">
+                                            <input type="text" name="subject" class="form-control" maxlength="50" id="id_subject" required>
+                                              </textarea>
+                                              <label for="id_subject">subject</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-6">
+                                        <div class="form-floating">
+                                          <input type="file" name="picture" accept="image/*" id="id_picture" required>
+                                            </textarea>
+                                            <label for="id_picture">picture</label>
+                                        </div>
+                                    </div>                               
+                                        <div class="col-sm-6">
+                                            <div class="form-floating">
+                                                <input type="password" name="password" class="form-control border-0" id="passwordfield" placeholder="Password" required>
+                                                <label for="passwordfield">Password</label>
+                                                <small class="float-right py-2 showPasswordToggle">SHOW</small>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="col-12">
+                                            <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <div class="container">
+                                    <span class = "text-lead lead"> Already have an account? </span><a href = "{% url 'faculty-login' %}" class="" style="color:#745959;">Login</a>
+            
+                                    <br>
+            
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="min-height: 400px;">
+                            <div class="position-relative h-100">
+                                <img class="position-absolute w-100 h-100 rounded" src="{% static 'img/appointment.jpg' %}" style="object-fit: cover;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Appointment End -->
+
+
+      
+        <!-- Footer End -->
+
+
+        <!-- Back to Top -->
+     
+        {% endblock %}
